@@ -8,7 +8,7 @@ public class Schalter_Model extends Model {
 	private final double ANKUNFTSZEIT_ABWEICHUNG = 	2;
 	private final double BEDIENZEIT_UNTERGRENZE = 2;
 	private final double BEDIENZEIT_OBERGRENZE = 10;
-	
+	private final double ANZAHL_SCHALTER = 10;
 	public Count verloreneKunden;
 	private ContDistNormal kundenAnkunftsZeit;
 
@@ -63,7 +63,7 @@ public class Schalter_Model extends Model {
     	freieSchalterQueue = new Queue<SchalterEntity>(this, "freie Schalter WS",true, true);
     	verloreneKunden = new Count(this, "Verlorene Kunden", true, true);
     	SchalterEntity schalter;
-    	for (int i = 1; i<=2; i++){
+    	for (int i = 1; i<=ANZAHL_SCHALTER; i++){
     		schalter = new SchalterEntity(this, "Fahrkartenschalter", true);
     		freieSchalterQueue.insert(schalter);
     	} 

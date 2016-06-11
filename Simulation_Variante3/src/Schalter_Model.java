@@ -11,6 +11,8 @@ public class Schalter_Model extends Model {
 	private final double BEDIENZEIT_UNTERGRENZE = 2;
 	private final double BEDIENZEIT_OBERGRENZE = 10;
 
+	private final double ANZAHL_SCHALTER = 5;
+
 	public Count verloreneKunden;
 	public Count verlorenePrioritaetsKunden;
 	private ContDistNormal kundenAnkunftsZeit;
@@ -88,14 +90,14 @@ public class Schalter_Model extends Model {
 		prioritaetkundenReiheQueue = new Queue<KundeEntity>(this,
 				"Prioritaetskunden-Warteschlange", true, true);
 		freieSchalterQueue = new Queue<SchalterEntity>(this,
-				"freie Schalter WS", true, true);
+				"freie Schalter", true, true);
 		freierPrioritaetsSchalterQueue = new Queue<SchalterEntity>(this,
-				"freie Prioritaetsschalter WS", true, true);
+				"freie Prioritaetsschalter", true, true);
 
 		verloreneKunden = new Count(this, "Verlorene Kunden", true, true);
 		verlorenePrioritaetsKunden = new Count(this, "Verlorene Prioritätskunden", true, true);
 		SchalterEntity schalter;
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 1; i <= ANZAHL_SCHALTER; i++) {
 			schalter = new SchalterEntity(this, "Fahrkartenschalter", true);
 			freieSchalterQueue.insert(schalter);
 		}
@@ -103,9 +105,9 @@ public class Schalter_Model extends Model {
 				"Prioritätsschalter", true));
 
 		besetzteSchalterQueue = new Queue<SchalterEntity>(this,
-				"besetzte Schalter WS", true, true);
+				"besetzte Schalter", true, true);
 		besetzterPrioritaetsSchalterQueue = new Queue<SchalterEntity>(this,
-				"besetzter Priortätsschalter WS", true, true);
+				"besetzter Priortätsschalter", true, true);
 	}
 
 	public static void main(java.lang.String[] args) {

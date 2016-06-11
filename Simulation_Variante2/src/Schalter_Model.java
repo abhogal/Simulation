@@ -16,7 +16,7 @@ public class Schalter_Model extends Model {
 	private final double ANKUNFTSZEIT_ABWEICHUNG = 	0.35;
 	private final double BEDIENZEIT_UNTERGRENZE = 2;
 	private final double BEDIENZEIT_OBERGRENZE = 15;
-	public final int ANZAHL_WS = 2;
+	public final int ANZAHL_WS = 10;
 	
 	public Count verloreneKunden;
 	private ContDistNormal kundenAnkunftsZeit;
