@@ -11,12 +11,13 @@ public class Schalter_Model extends Model {
 	private final double BEDIENZEIT_UNTERGRENZE = 2;
 	private final double BEDIENZEIT_OBERGRENZE = 10;
 
-	private final double ANZAHL_SCHALTER = 5;
+	private final double ANZAHL_SCHALTER = 2;
 
 	public Count verloreneKunden;
 	public Count verlorenePrioritaetsKunden;
-	private ContDistNormal kundenAnkunftsZeit;
-	private ContDistNormal prioritaetsKundenAnkunftsZeit;
+
+	private ContDistExponential kundenAnkunftsZeit;
+	private ContDistExponential prioritaetsKundenAnkunftsZeit;
 
 	public double getKundenAnkunftsZeit() {
 		// sample(): Returns the next negative exponential pseudo random number.
@@ -72,13 +73,12 @@ public class Schalter_Model extends Model {
 	}
 
 	public void init() {
-		kundenAnkunftsZeit = new ContDistNormal(this, "Ankunftszeitintervall",
-				ANKUNFTSZEIT_DURCHSCHNITT, ANKUNFTSZEIT_ABWEICHUNG, true, true);
+		kundenAnkunftsZeit = new ContDistExponential(this, "Ankunftszeitintervall",
+				ANKUNFTSZEIT_DURCHSCHNITT, true, true);
 		kundenAnkunftsZeit.setNonNegative(true);
-		prioritaetsKundenAnkunftsZeit = new ContDistNormal(this,
+		prioritaetsKundenAnkunftsZeit = new ContDistExponential(this,
 				"Ankunftszeitintervall Priorität",
-				PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT,
-				PRIORITAET_ANKUNFTSZEIT_ABWEICHUNG, true, true);
+				PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT, true, true);
 		prioritaetsKundenAnkunftsZeit.setNonNegative(true);
 		
 		// kundenAnkunftsZeit.setSeed(1234567890);

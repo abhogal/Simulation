@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import desmoj.core.dist.ContDistExponential;
 import desmoj.core.dist.ContDistNormal;
 import desmoj.core.dist.ContDistUniform;
 import desmoj.core.simulator.Experiment;
@@ -19,7 +20,7 @@ public class Schalter_Model extends Model {
 	public final int ANZAHL_WS = 10;
 	
 	public Count verloreneKunden;
-	private ContDistNormal kundenAnkunftsZeit;
+	private ContDistExponential kundenAnkunftsZeit;
 
     public double getKundenAnkunftsZeit() {
     	// sample(): Returns the next negative exponential pseudo random number.
@@ -62,7 +63,7 @@ public class Schalter_Model extends Model {
     public void init() {
 
     	kundenAnkunftsZeit = 
-            new ContDistNormal(this, "Ankunftszeitintervall",ANKUNFTSZEIT_DURCHSCHNITT,ANKUNFTSZEIT_ABWEICHUNG,true,true);
+            new ContDistExponential(this, "Ankunftszeitintervall",ANKUNFTSZEIT_DURCHSCHNITT,true,true);
     	kundenAnkunftsZeit.setNonNegative(true);
     	//kundenAnkunftsZeit.setSeed(1234567890);
         bedienZeit = 
