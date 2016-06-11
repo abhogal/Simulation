@@ -4,10 +4,10 @@ import desmoj.core.dist.*;
 
 public class Schalter_Model extends Model {
 	
-	private final double ANKUNFTSZEIT_DURCHSCHNITT= 1;
-	private final double ANKUNFTSZEIT_ABWEICHUNG = 	0.35;
+	private final double ANKUNFTSZEIT_DURCHSCHNITT= 2;
+	private final double ANKUNFTSZEIT_ABWEICHUNG = 	2;
 	private final double BEDIENZEIT_UNTERGRENZE = 2;
-	private final double BEDIENZEIT_OBERGRENZE = 15;
+	private final double BEDIENZEIT_OBERGRENZE = 10;
 	
 	public Count verloreneKunden;
 	private ContDistNormal kundenAnkunftsZeit;
@@ -58,7 +58,7 @@ public class Schalter_Model extends Model {
     	kundenAnkunftsZeit.setNonNegative(true);
     	//kundenAnkunftsZeit.setSeed(1234567890);
         bedienZeit = 
-            new ContDistUniform(this, "Bedienzeiten", BEDIENZEIT_UNTERGRENZE, BEDIENZEIT_UNTERGRENZE, true, true);	
+            new ContDistUniform(this, "Bedienzeiten", BEDIENZEIT_UNTERGRENZE, BEDIENZEIT_OBERGRENZE, true, true);	
        	kundenReiheQueue = new Queue<KundeEntity>(this, "Kunden-Warteschlange",true, true);	
     	freieSchalterQueue = new Queue<SchalterEntity>(this, "freie Schalter WS",true, true);
     	verloreneKunden = new Count(this, "Verlorene Kunden", true, true);
@@ -73,7 +73,7 @@ public class Schalter_Model extends Model {
     public static void main(java.lang.String[] args) {
 
     	Experiment schalterExperiment = 
-            new Experiment("Schalter1-ereignis");
+            new Experiment("Variante1-ereignis");
         Schalter_Model sch_e_model = 
             new Schalter_Model(null, "Schalter Modell", true, true);  
         

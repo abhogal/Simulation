@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Desmo-j/src"/>
+	<classpathentry kind="src" path="Simulation_Variante1/src"/>
+	<classpathentry kind="lib" path="Desmo-j/lib/desmoj-2.5.1c-bin.jar"/>
+	<classpathentry kind="lib" path="Simulation_Variante1/lib/desmoj-2.5.1c-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="Simulation_Variante1/bin"/>
+</classpath>

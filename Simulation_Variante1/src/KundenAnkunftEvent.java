@@ -2,7 +2,7 @@ import desmoj.core.simulator.*;
 
 public class KundenAnkunftEvent extends Event<KundeEntity> {
 	
-	private final int MAXIMALE_LAENGE = 10;
+	private final int MAXIMALE_LAENGE = 7;
     private Schalter_Model meinModel;
     
 
