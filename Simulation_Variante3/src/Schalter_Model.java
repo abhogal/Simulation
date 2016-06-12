@@ -5,12 +5,9 @@ import desmoj.core.dist.*;
 public class Schalter_Model extends Model {
 
 	private final double ANKUNFTSZEIT_DURCHSCHNITT = 2;
-	private final double ANKUNFTSZEIT_ABWEICHUNG = 2;
 	private final double PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT = 10;
-	private final double PRIORITAET_ANKUNFTSZEIT_ABWEICHUNG = 5;
 	private final double BEDIENZEIT_UNTERGRENZE = 2;
 	private final double BEDIENZEIT_OBERGRENZE = 10;
-
 	private final double ANZAHL_SCHALTER = 2;
 
 	public Count verloreneKunden;

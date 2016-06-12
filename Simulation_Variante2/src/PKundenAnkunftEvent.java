@@ -1,12 +1,12 @@
 import desmoj.core.simulator.*;
 
-public class KundenAnkunftEvent extends Event<KundeEntity> {
+public class PKundenAnkunftEvent extends Event<KundeEntity> {
 	
 	private final int MAXIMALE_LAENGE = 10;
     private Schalter_Model meinModel;
     
 
-    public KundenAnkunftEvent(Model owner, String name, boolean showInTrace) {
+    public PKundenAnkunftEvent(Model owner, String name, boolean showInTrace) {
         super(owner, name, showInTrace);
 
         meinModel = (Schalter_Model) owner;
@@ -28,7 +28,7 @@ public class KundenAnkunftEvent extends Event<KundeEntity> {
     	}
 
     	if(meinModel.kundenReiheQueue.get(minIndex).length() >= MAXIMALE_LAENGE) {
-    		meinModel.verloreneKunden.update();
+    		meinModel.verlorenePrioritaetsKunden.update();
     	} else {
     		// Kunde in Warteschlange
             meinModel.kundenReiheQueue.get(minIndex).insert(kunde);
@@ -52,7 +52,7 @@ public class KundenAnkunftEvent extends Event<KundeEntity> {
             
             // Bedienungsende Ereignis erzeugen
             BedienEndeEvent bedienEnde = 
-                new BedienEndeEvent (meinModel, "Bedienung Ende", minIndex, true);
+                new BedienEndeEvent (meinModel, "PBedienung Ende", minIndex, true);
             // eintragen in Ereignisliste
             bedienEnde.schedule(kunde, new TimeSpan(meinModel.getBedienZeit()));
         }

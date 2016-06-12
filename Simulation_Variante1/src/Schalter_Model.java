@@ -5,12 +5,16 @@ import desmoj.core.dist.*;
 public class Schalter_Model extends Model {
 	
 	private final double ANKUNFTSZEIT_DURCHSCHNITT= 2;
-	private final double ANKUNFTSZEIT_ABWEICHUNG = 	2;
+	private final double PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT = 10;
 	private final double BEDIENZEIT_UNTERGRENZE = 2;
 	private final double BEDIENZEIT_OBERGRENZE = 10;
-	private final double ANZAHL_SCHALTER = 10;
+	private final double ANZAHL_SCHALTER = 1;
+	
 	public Count verloreneKunden;
+	public Count verlorenePrioritaetsKunden;
+	
 	private ContDistExponential kundenAnkunftsZeit;
+	private ContDistExponential prioritaetsKundenAnkunftsZeit;
 
     public double getKundenAnkunftsZeit() {
     	// sample(): Returns the next negative exponential pseudo random number.
@@ -18,6 +22,11 @@ public class Schalter_Model extends Model {
 	   return kundenAnkunftsZeit.sample();
     }
 
+    public double getPrioritaetsKundenAnkunftsZeit() {
+		// sample(): Returns the next negative exponential pseudo random number.
+		return prioritaetsKundenAnkunftsZeit.sample();
+	}
+    
 	private ContDistUniform bedienZeit;
 
     public double getBedienZeit() {
@@ -49,6 +58,13 @@ public class Schalter_Model extends Model {
 		new NeuerKundeEvent(this, "Kundenkreation", true);
          // erstes Kundenkreations-Ereignis in Ereignisliste eintragen
          ersterKunde.schedule(new TimeSpan(getKundenAnkunftsZeit()));
+         
+         // erstes PKundenkreation-Ereignis erzeugen
+  		NeuerPKundeEvent ersterPKunde = new NeuerPKundeEvent(this,
+  				"PKundenkreation", true);
+  		// erstes PKundenkreations-Ereignis in Ereignisliste eintragen
+  		ersterPKunde.schedule(new TimeSpan(getPrioritaetsKundenAnkunftsZeit()));		
+     
     }
 
     public void init() {
@@ -56,12 +72,19 @@ public class Schalter_Model extends Model {
     	kundenAnkunftsZeit = 
             new ContDistExponential(this, "Ankunftszeitintervall",ANKUNFTSZEIT_DURCHSCHNITT, true,true);
     	kundenAnkunftsZeit.setNonNegative(true);
-    	//kundenAnkunftsZeit.setSeed(1234567890);
-        bedienZeit = 
+    	prioritaetsKundenAnkunftsZeit = new ContDistExponential(this,
+				"Ankunftszeitintervall Priorität",
+				PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT, true, true);
+		prioritaetsKundenAnkunftsZeit.setNonNegative(true);
+
+    	bedienZeit = 
             new ContDistUniform(this, "Bedienzeiten", BEDIENZEIT_UNTERGRENZE, BEDIENZEIT_OBERGRENZE, true, true);	
        	kundenReiheQueue = new Queue<KundeEntity>(this, "Kunden-Warteschlange",true, true);	
     	freieSchalterQueue = new Queue<SchalterEntity>(this, "freie Schalter WS",true, true);
+    	
     	verloreneKunden = new Count(this, "Verlorene Kunden", true, true);
+		verlorenePrioritaetsKunden = new Count(this, "Verlorene Prioritätskunden", true, true);
+
     	SchalterEntity schalter;
     	for (int i = 1; i<=ANZAHL_SCHALTER; i++){
     		schalter = new SchalterEntity(this, "Fahrkartenschalter", true);
