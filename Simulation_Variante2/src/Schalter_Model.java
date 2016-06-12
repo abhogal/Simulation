@@ -17,10 +17,13 @@ public class Schalter_Model extends Model {
 	private final double PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT = 10;
 	private final double BEDIENZEIT_UNTERGRENZE = 2;
 	private final double BEDIENZEIT_OBERGRENZE = 15;
-	public final int ANZAHL_SCHALTER = 2;
+	public final int ANZAHL_SCHALTER = 3;
+	public final boolean chooseRandom = true;
 	
 	public Count verloreneKunden;
 	public Count verlorenePrioritaetsKunden;
+	
+	public ContDistUniform chooseRandomQueue;
 	
 	private ContDistExponential kundenAnkunftsZeit;
 	private ContDistExponential prioritaetsKundenAnkunftsZeit;
@@ -32,9 +35,13 @@ public class Schalter_Model extends Model {
 
 	public double getPrioritaetsKundenAnkunftsZeit() {
 		// sample(): Returns the next negative exponential pseudo random number.
-		System.out.println(prioritaetsKundenAnkunftsZeit.sample());
 		return prioritaetsKundenAnkunftsZeit.sample();
 	}
+	
+	public int getRandomChosenQueue() {
+		return (int) Math.round(chooseRandomQueue.sample());
+	}
+	
 	
 	private ContDistUniform bedienZeit;
 
@@ -83,6 +90,7 @@ public class Schalter_Model extends Model {
 				"Ankunftszeitintervall Priorität",
 				PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT, true, true);
 		prioritaetsKundenAnkunftsZeit.setNonNegative(true);
+		chooseRandomQueue = new ContDistUniform(this, "RandomQueueWahl", 0, ANZAHL_SCHALTER-1, true, true);
 		
     	//kundenAnkunftsZeit.setSeed(1234567890);
         bedienZeit = 
