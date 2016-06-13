@@ -8,7 +8,7 @@ public class Schalter_Model extends Model {
 	private final double PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT = 10;
 	private final double BEDIENZEIT_UNTERGRENZE = 1;
 	private final double BEDIENZEIT_OBERGRENZE = 10;
-	private final double ANZAHL_SCHALTER = 2;
+	private final double ANZAHL_SCHALTER = 4;
 
 	public Count verloreneKunden;
 	public Count verlorenePrioritaetsKunden;
