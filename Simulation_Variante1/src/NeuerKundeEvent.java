@@ -13,8 +13,8 @@ public class NeuerKundeEvent extends ExternalEvent {
     public void eventRoutine() {
 	
         // neuen Kunden erzeugen
-        KundeEntity kunde = new KundeEntity (meinModel, "Kunde", true);
-
+        KundeEntity kunde = new KundeEntity (meinModel, "Kunde", true); 
+        
         // neues KundenAnkunfts-Ereignis erzeugen
         KundenAnkunftEvent kundenAnkunft =
             new KundenAnkunftEvent (meinModel, "Kundenankunft", true);

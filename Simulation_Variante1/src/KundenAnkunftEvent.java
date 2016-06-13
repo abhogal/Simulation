@@ -2,7 +2,7 @@ import desmoj.core.simulator.*;
 
 public class KundenAnkunftEvent extends Event<KundeEntity> {
 	
-	private final int MAXIMALE_LAENGE = 7;
+	private final int MAXIMALE_LAENGE = 5;
     private Schalter_Model meinModel;
     
 
@@ -17,7 +17,7 @@ public class KundenAnkunftEvent extends Event<KundeEntity> {
 
         // cast notwendig
         //KundeEntity kunde =  who;
-
+    	System.out.println("Kundenankunft");
     	if(meinModel.kundenReiheQueue.length() >= MAXIMALE_LAENGE) {
     		meinModel.verloreneKunden.update();
     	} else {
