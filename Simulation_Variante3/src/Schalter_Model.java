@@ -5,10 +5,10 @@ import desmoj.core.dist.*;
 public class Schalter_Model extends Model {
 	public static int i;
 	private final double ANKUNFTSZEIT_DURCHSCHNITT = 2.5;
-	private final double PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT = 10;
+	private final double PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT = 20;
 	private final double BEDIENZEIT_UNTERGRENZE = 1;
 	private final double BEDIENZEIT_OBERGRENZE = 10;
-	public final double ANZAHL_SCHALTER = 2;
+	public final double ANZAHL_SCHALTER = 5;
 
 	public Count verloreneKunden;
 	public Count verlorenePrioritaetsKunden;
