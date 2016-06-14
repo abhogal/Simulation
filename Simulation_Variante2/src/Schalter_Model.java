@@ -12,7 +12,7 @@ import desmoj.core.simulator.TimeSpan;
 import desmoj.core.statistic.Count;
 
 public class Schalter_Model extends Model {
-	public static int i;
+	public static int indexSeed;
 
 	private final double ANKUNFTSZEIT_DURCHSCHNITT = 2.5;
 	private final double PRIORITAET_ANKUNFTSZEIT_DURCHSCHNITT = 15;
@@ -102,8 +102,8 @@ public class Schalter_Model extends Model {
 		prioritaetsKundenAnkunftsZeit.setNonNegative(true);
 		chooseRandomQueue = new ContDistUniform(this, "RandomQueueWahl", 0, ANZAHL_SCHALTER - 1, true, true);
 
-		kundenAnkunftsZeit.setSeed(seeds[i][0]);
-		prioritaetsKundenAnkunftsZeit.setSeed(seeds[i][1]);
+		kundenAnkunftsZeit.setSeed(seeds[indexSeed][0]);
+		prioritaetsKundenAnkunftsZeit.setSeed(seeds[indexSeed][1]);
 
 		bedienZeit = new ContDistUniform(this, "Bedienzeiten", BEDIENZEIT_UNTERGRENZE, BEDIENZEIT_OBERGRENZE, true,
 				true);
@@ -132,10 +132,10 @@ public class Schalter_Model extends Model {
 	}
 
 	public static void main(java.lang.String[] args) {
-		i = 0;
+		indexSeed = 0;
 
-		for (i = 0; i < 50; i++) {
-			Experiment schalterExperiment = new Experiment("Variante2-ereignis" + i);
+		for (indexSeed = 0; indexSeed < 50; indexSeed++) {
+			Experiment schalterExperiment = new Experiment("Variante2-ereignis" + indexSeed);
 			Schalter_Model sch_e_model = new Schalter_Model(null, "Schalter Modell", true, true);
 
 			sch_e_model.connectToExperiment(schalterExperiment);
