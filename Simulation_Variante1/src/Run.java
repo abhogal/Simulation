@@ -8,7 +8,7 @@ public class Run {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		String outputFile = "C:\\Users\\Amrit\\Documents\\GitHub\\Simulation\\Simulation_Variante1\\Var1_4Schalter.csv";
+		String outputFile = "C:\\Users\\Amrit\\Documents\\GitHub\\Simulation\\Simulation_Variante1\\Var1_2Schalter.csv";
 		int i = 0;
 		String appendText = "";
 		while (i < 50) {
